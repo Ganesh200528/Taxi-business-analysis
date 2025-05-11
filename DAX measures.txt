@@ -1,0 +1,46 @@
+DAX MEASURES:-
+
+
+1) Revenue per KM = 
+   DIVIDE(SUM(Taxi_Data[Price Charged]),sum(Taxi_Data[Distance Travelled(KM)]))
+
+2) total cost of  trip = SUM(Taxi_Data[Cost of Trip])
+
+3) total Distance Traveled = SUM(Taxi_Data[Distance Travelled(KM)])
+
+4) total price charged = sum(Taxi_Data[Price Charged])
+
+5) Total Revenue by Gender = 
+CALCULATE(
+    SUM(Taxi_Data[Price Charged]),
+    USERELATIONSHIP(Transaction_ID[Customer ID], Customer_ID[Customer ID])
+)
+
+
+6)Trips per City = COUNTROWS(Taxi_Data)
+
+
+
+for Column's :-
+
+
+1) Avg Distance by Age Group = 
+  CALCULATE(
+    AVERAGE(Taxi_Data[Distance Travelled(KM)]),
+    USERELATIONSHIP(Transaction_ID[Customer ID], Customer_ID[Customer ID])
+  )
+
+2) Age Group = 
+SWITCH(
+    TRUE(),
+      customer_id[age]< 25, "Under 25",
+      Customer_id[age] < 40, "25-39",
+      Customer_id[age]< 60, "40-59",
+    "60+"
+)
+
+
+
+
+
+ 
